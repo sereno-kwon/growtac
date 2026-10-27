@@ -3,6 +3,7 @@
 growtac.rubiworkshop.com 원페이지 정적 사이트. gokiso.rubiworkshop.com과 같은 구조입니다.
 
 - `index.html` 원페이지 본체 (한국어), `en/index.html` 영어, `ja/index.html` 일본어. 모두 빌드 결과물입니다.
+- 디자인은 rubi.kr과 같은 체계(2026-10 리디자인): 영문 Pretendard · 한글 에스코어 드림, 웨이트 400, 흑백과 얇은 라인, 각진 버튼, 라이트/다크 자동. 메인 슬라이드는 루비워크샵(rubiworkshop.com) 히어로와 같은 구조. 일본어 페이지는 빌드 시 Noto Sans JP로 바뀝니다.
 - 원페이지 구성 (GROWTAC · EQUAL BRAKE(+ 시스템 구조, 플랫/포스트, 컬러) · KASHIMA COAT · CONTROL LEVER · SHOWROOM)
 - `index.src.html` 편집용 원본. 스펙 표는 `{{SPEC_*}}` 자리에 `build.py`가 채웁니다. 내용을 고칠 때는 `index.src.html`을 수정한 뒤 `python3 build.py`를 실행합니다. `index.html`을 직접 고치면 다음 빌드 때 덮어써집니다.
 - `build.py` 스펙 데이터(브레이크, 카시마 코트, 컨트롤 레버)와 빌드 스크립트. `python3 build.py`로 세 언어 페이지를 한 번에 생성, `python3 build.py --preview`는 이미지를 원본 주소로 연결한 preview*.html 생성

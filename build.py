@@ -97,6 +97,9 @@ SPEC_LABELS = {
 SITE = "https://growtac.rubiworkshop.com/"
 LANGS = [("ko", "KO", ""), ("en", "EN", "en/"), ("ja", "JA", "ja/")]
 HANGUL = re.compile("[가-힣]")
+JA_FONT = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+           '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap" rel="stylesheet">'
+           '<style>:root{--font:"RubiLatin","Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif}</style>')
 
 
 def lang_switch(cur):
@@ -142,7 +145,9 @@ def render(code):
     out = out.replace(f'<meta property="og:url" content="{SITE}">', f'<meta property="og:url" content="{SITE}{m["path"]}">')
     out = out.replace('content="ko_KR"', f'content="{m["locale"]}"')
     out = out.replace('"inLanguage": "ko-KR"', f'"inLanguage": "{m["lang"]}"')
-    out = re.sub(r"family=Roboto[^\"]*display=swap", m["fonts"], out, count=1)
+    if code == "ja":
+        # 일본어는 한글 서체(에스코어 드림) 대신 Noto Sans JP (영문·숫자는 Pretendard 유지)
+        out = out.replace("</style>\n</head>", "</style>\n" + JA_FONT + "\n</head>", 1)
     # 하위 폴더에서 이미지 경로
     out = re.sub(r'((?:src|href)=")images/', r"\1../images/", out)
     out = out.replace("url(images/", "url(../images/")
